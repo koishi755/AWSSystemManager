@@ -1,0 +1,31 @@
+#SSM エージェントをインストール
+#RHEL8
+sudo dnf install -y https://s3.ap-northeast-1.amazonaws.com/amazon-ssm-ap-northeast-1/latest/linux_amd64/amazon-ssm-agent.rpm
+
+#RHEL7
+sudo yum install -y https://s3.ap-northeast-1.amazonaws.com/amazon-ssm-ap-northeast-1/latest/linux_amd64/amazon-ssm-agent.rpm
+
+#状態確認
+sudo systemctl status amazon-ssm-agent
+
+#永続化
+sudo systemctl enable amazon-ssm-agent
+
+#サービス起動
+sudo systemctl start amazon-ssm-agent
+
+#Windows版インストール
+Invoke-WebRequest `
+    https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/windows_amd64/AmazonSSMAgentSetup.exe `
+    -OutFile $env:USERPROFILE\Desktop\SSMAgent_latest.exe
+
+#サービス起動
+Start-Process `
+    -FilePath $env:USERPROFILE\Desktop\SSMAgent_latest.exe `
+    -ArgumentList "/S"
+
+#exeファイル削除
+rm -Force $env:USERPROFILE\Desktop\SSMAgent_latest.exe
+
+#サービス再起動
+Restart-Service AmazonSSMAgent
