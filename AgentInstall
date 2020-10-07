@@ -5,9 +5,6 @@ sudo dnf install -y https://s3.ap-northeast-1.amazonaws.com/amazon-ssm-ap-northe
 #RHEL7
 sudo yum install -y https://s3.ap-northeast-1.amazonaws.com/amazon-ssm-ap-northeast-1/latest/linux_amd64/amazon-ssm-agent.rpm
 
-#ubuntu18
-sudo snap install amazon-ssm-agent --classic
-
 #状態確認
 sudo systemctl status amazon-ssm-agent
 
@@ -16,6 +13,22 @@ sudo systemctl enable amazon-ssm-agent
 
 #サービス起動
 sudo systemctl start amazon-ssm-agent
+
+----------------------------------------------------------------------------------------------------------------------
+
+#ubuntu18
+sudo snap install amazon-ssm-agent --classic
+
+#インストール確認
+sudo snap list amazon-ssm-agent
+
+#サービススタート
+sudo snap start amazon-ssm-agent
+
+#状態確認
+sudo snap services amazon-ssm-agent
+
+----------------------------------------------------------------------------------------------------------------------
 
 #Windows版インストール
 Invoke-WebRequest `
