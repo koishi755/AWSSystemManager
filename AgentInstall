@@ -16,7 +16,7 @@ sudo systemctl start amazon-ssm-agent
 
 ----------------------------------------------------------------------------------------------------------------------
 
-#ubuntu18
+#ubuntu18（オンプレ環境）
 sudo snap install amazon-ssm-agent --classic
 
 #インストール確認
@@ -27,6 +27,15 @@ sudo snap start amazon-ssm-agent
 
 #状態確認
 sudo snap services amazon-ssm-agent
+
+#エージェントを停止
+sudo snap stop amazon-ssm-agent
+
+#エージェントにコンソールで出力したcode、idを入力
+sudo /snap/amazon-ssm-agent/2012/amazon-ssm-agent -register -code "xxxxxxxxxxxxxxxxx" -id "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx" -region "ap-northeast-1"
+
+#サービススタート
+sudo snap start amazon-ssm-agent
 
 ----------------------------------------------------------------------------------------------------------------------
 
